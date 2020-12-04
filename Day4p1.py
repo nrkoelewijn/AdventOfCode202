@@ -11,7 +11,7 @@ for doc in batch:
     
 valid = len(documents)
 
-# Investigate each document and put in dictionary format.
+# Investigate each document
 for doc in documents:     
     d = []  
     # Create a reference fields list without country ID.
@@ -19,10 +19,9 @@ for doc in documents:
     
     # Only if document has enough attributes, then try validate further.
     if len(doc) >= len(fields):
-        #print("Try validate: \n",doc)
         # Read attributes of document.
         for attr in doc:
-            # Add attribute type and value to document dictionary.
+            # Add attribute type and value to list.
             d.append(attr.split(':')[0])
     
         # Check validity document and remove if invalid.
