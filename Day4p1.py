@@ -9,32 +9,29 @@ for doc in batch:
     newdoc = doc.replace("\n", " ")
     documents.append(newdoc.split(" "))
     
-print("start size:",len(documents))
+valid = len(documents)
 
 # Investigate each document and put in dictionary format.
-for doc in documents:   
-    #print("\n")
-    docDict = {} 
-    
+for doc in documents:     
+    d = []  
     # Create a reference fields list without country ID.
     fields = ["byr","iyr","eyr","hgt","hcl","ecl","pid"]
     
     # Only if document has enough attributes, then try validate further.
-    if len(doc) >= len(fields)-1:
+    if len(doc) >= len(fields):
         #print("Try validate: \n",doc)
         # Read attributes of document.
         for attr in doc:
             # Add attribute type and value to document dictionary.
-            docDict.update({attr.split(':')[0] : attr.split(':')[1]})
+            d.append(attr.split(':')[0])
     
         # Check validity document and remove if invalid.
         for field in fields:
-            if field not in docDict:
-                #print("This field is missing:", field)
-                documents.remove(doc)
+            if field not in d:
+                valid -= 1
                 break
     else:
-        documents.remove(doc)
+        valid -= 1
 
 # Print total number of valid documents.
-print("Leftover valid documents:",len(documents))
+print("Leftover valid documents:",valid)
