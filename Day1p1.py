@@ -13,4 +13,5 @@ with open('AoC/Day1p1input.txt') as f:
                 break
         if (int(n) + int(k) + int(j)) == 2020:
             break
+            
     
